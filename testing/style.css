@@ -1,0 +1,99 @@
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: beige;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 300px;
+  height: 500px;
+}
+
+.nav {
+  background-color: rgb(5, 135, 135);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* categories menu */
+.categories {
+  display: none;
+}
+
+.main-menu-container {
+  height: 340px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(147, 226, 173);
+}
+
+.empty-template {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: aquamarine;
+}
+
+/* categories */
+.nav-categories {
+  background-color: rgb(6, 168, 101);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-container {
+  height: 340px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(23, 112, 21);
+}
+
+.empty-template-categories {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: rgb(199, 233, 7);
+}
+
+/* templates */
+.templates {
+  display: none;
+}
+
+.nav-templates {
+  background-color: rgba(228, 63, 228, 0.575);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.templates-container {
+  height: 340px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(18, 156, 241);
+}
+
+.empty-templates {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: rgb(206, 97, 30);
+}
+
+button {
+  height: 50px;
+  width: 100px;
+}

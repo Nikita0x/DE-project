@@ -57,13 +57,16 @@ btnAddNewLanguage.addEventListener('click', (e) => {
     alignItems: alignItems,
     backgroundColor: backgroundColor,
     cursor: cursor,
+    category: [],
   };
   storedButtons.push(newButtonData);
   localStorage.setItem('buttons', JSON.stringify(storedButtons));
 
   //Add event listener to the new button
   newButton.addEventListener('click', (e) => {
-    console.log(e.target.dataset.id);
+    const clickedButton = e.target.dataset.id;
+    console.log(clickedButton);
+    modalCategory.style.display = 'flex'; //none by default
   });
 });
 
@@ -73,7 +76,9 @@ function addEventListenerOnAllButtons() {
   const buttons = document.querySelectorAll('.button');
   buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-      console.log(e.target.dataset.id);
+      const clickedButton = e.target.dataset.id;
+      console.log(clickedButton);
+      modalCategory.style.display = 'flex'; //none by default
     });
   });
 }
@@ -86,7 +91,7 @@ addEventListenerOnAllButtons();
 const modalCategory = document.createElement('div');
 container.appendChild(modalCategory);
 modalCategory.classList.add('modalCategory');
-modalCategory.style.display = 'flex'; //none by default
+modalCategory.style.display = 'none'; //none by default
 modalCategory.style.position = 'absolute';
 modalCategory.style.top = '0';
 modalCategory.style.left = '0';
