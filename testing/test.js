@@ -7,6 +7,7 @@ const categories = [];
 const templates = [];
 let selectedLanguage = '';
 let categoryBtnIdGlobal = '';
+let selectedTemplateId = '';
 
 // containers
 const mainMenuContainer = document.querySelector('.main-menu-container');
@@ -80,5 +81,23 @@ backToCategoryBtn.addEventListener('click', () => {
 });
 
 // templates
-
-newTemplateBtn.addEventListener('click', () => {});
+//add new template
+newTemplateBtn.addEventListener('click', () => {
+  selectedTemplateId = Date.now().toString();
+  addTemplateBtn(categoryBtnIdGlobal, selectedTemplateId);
+});
+function addTemplateBtn(categoryBtnIdGlobal, selectedTemplateId) {
+  // create and append a button
+  const button = document.createElement('button');
+  button.innerText = 'new template';
+  button.id = selectedTemplateId;
+  button.classList.add('btn-template');
+  templatesContainer.appendChild(button);
+  console.log(`TemplateBtn ID: ${selectedTemplateId}`);
+  templates.push({ categoryBtnIdGlobal, selectedTemplateId });
+  button.addEventListener('click', (e) => {
+    // When the template button is clicked, insert a template into the textarea from a selected category
+    insertTemplate();
+  });
+}
+function insertTemplate() {}
