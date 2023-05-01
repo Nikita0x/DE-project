@@ -6,7 +6,7 @@ const languages = [];
 const categories = [];
 const templates = [];
 let selectedLanguage = '';
-let categoryBtnId = '';
+let categoryBtnIdGlobal = '';
 
 // containers
 const mainMenuContainer = document.querySelector('.main-menu-container');
@@ -30,20 +30,20 @@ newLanguageBtn.addEventListener('click', () => {
     selectedLanguage = buttonId;
     console.log(`Button ID: ${buttonId}`);
     console.log(`Selected Language: ${selectedLanguage}`);
-    renderCategories(selectedLanguage);
+    showCategoriesForLanguage(selectedLanguage);
   });
 });
 
 // logic to clear all buttons in Category menu and render those which exist and have a parent of a selectedLanguage button
-function renderCategories(languageId) {
+function showCategoriesForLanguage(languageId) {
   categoriesCard.style.display = 'block';
   categoriesContainer.innerHTML = `Selected Language ID: ${languageId}`;
 }
 //-------------------------------------------
 // add new category btn
 newCategoryBtn.addEventListener('click', () => {
-  categoryBtnId = Date.now().toString();
-  addCategoryBtn(selectedLanguage, categoryBtnId);
+  categoryBtnIdGlobal = Date.now().toString();
+  addCategoryBtn(selectedLanguage, categoryBtnIdGlobal);
 });
 function addCategoryBtn(selectedLanguage, categoryBtnId) {
   // create and append a button
@@ -53,9 +53,10 @@ function addCategoryBtn(selectedLanguage, categoryBtnId) {
   button.classList.add('btn-category');
   categoriesContainer.appendChild(button);
   console.log(`CategoryBtn ID: ${categoryBtnId}`);
-  categories.push({ selectedLanguage, categoryBtnId });
-  button.addEventListener('click', () => {
+  categories.push({ selectedLanguage, categoryBtnIdGlobal });
+  button.addEventListener('click', (e) => {
     // When the category button is clicked, show the templates for that category
+    categoryBtnIdGlobal = e.target.id;
     showTemplatesForCategory(categoryBtnId);
   });
 }
@@ -74,8 +75,8 @@ backToMainMenuBtn.addEventListener('click', () => {
 //back button
 const backToCategoryBtn = document.getElementById('backToCategory');
 backToCategoryBtn.addEventListener('click', () => {
-  categoryBtnId = '';
-  templates.style.display = 'none';
+  categoryBtnIdGlobal = '';
+  templatesCard.style.display = 'none';
 });
 
 // templates
