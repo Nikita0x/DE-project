@@ -169,8 +169,8 @@ btnEditSave.addEventListener('click', saveTemplate);
 function saveTemplate() {
   let mainTemplate = JSON.parse(localStorage.getItem('template')) || {};
   mainTemplate = textAreaMainMenu.value;
+  localStorage.setItem('template', JSON.stringify(mainTemplate));
   let replacedText = mainTemplate.replace(/\*brand\*/g, brand);
-  localStorage.setItem('template', JSON.stringify(replacedText));
   editModal.style.backgroundColor = 'rgba(0, 255, 0, 0.85)';
   setTimeout(function () {
     editModal.style.backgroundColor = 'rgb(242, 175, 175, 0.85)';
@@ -205,8 +205,7 @@ btnEditClose.addEventListener('click', () => {
 // text area of the main menu modal
 const textAreaMainMenu = document.getElementById('textAreaMainMenu');
 textAreaMainMenu.value = JSON.parse(localStorage.getItem('template')) || {};
-let replacedText = textAreaMainMenu.value.replace(/\*brand\*/g, brand);
-localStorage.setItem('template', JSON.stringify(replacedText));
+//
 //
 //
 //
@@ -219,7 +218,8 @@ emptyTemplateMainBtn.addEventListener('click', (e) => {
 //
 function insertTemplate() {
   let parsedTemplate = JSON.parse(localStorage.getItem('template')) || {};
-  LicaTextArea.value = parsedTemplate;
+  let replacedText = textAreaMainMenu.value.replace(/\*brand\*/g, brand);
+  LicaTextArea.value = replacedText;
   console.log('function is working');
 }
 //
