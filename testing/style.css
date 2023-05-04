@@ -30,6 +30,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
   background-color: rgb(147, 226, 173);
 }
 /* empty template + edit modal */
@@ -125,7 +126,7 @@
   background-color: #1351087b;
 }
 
-/* template */
+/* template main menu modal */
 #mainMenuTemplate {
   display: flex;
   justify-content: space-evenly;
@@ -177,6 +178,103 @@
 /*  */
 /*  */
 /*  */
+/* categories template  */
+#editModal-categories {
+  display: none; /* none by default */
+  position: absolute;
+  z-index: 1;
+  left: 50;
+  top: 50;
+  width: 90%;
+  height: 90%;
+  overflow: auto;
+  border-radius: 10px;
+  background-color: rgb(242, 175, 175, 93%); /* Fallback color */
+}
+#editModal-categories.active {
+  /* animation */
+  animation-name: open;
+  animation-duration: 0.4s;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    scale: 0;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+#editModal-categories.closed {
+  /* animation */
+  animation-name: closed;
+  animation-duration: 0.4s;
+}
+@keyframes closed {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 0;
+  }
+}
+
+.modal-header-categories {
+  position: relative;
+  height: 50px;
+  background-color: #1351087b;
+}
+
+/* template main menu modal */
+#mainMenuTemplate-categories {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 60px;
+}
+
+/* The Save Button */
+.save-categories {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  color: #21f00a;
+  float: right;
+  font-size: 30px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.save-categories:hover,
+.save-categories:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.close-categories {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f70000;
+  float: right;
+  font-size: 40px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.close-categories:hover,
+.close-categories:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 /*  */
 /*  */
 /*  */
@@ -213,15 +311,40 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
   background-color: rgb(23, 112, 21);
 }
 
+/* categories footer */
+
 .empty-template-categories {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 70px;
   width: 100%;
   background-color: rgb(199, 233, 7);
+  cursor: pointer;
   border-radius: 0 0 10px 10px;
+}
+.empty-template-categories:hover {
+  background-color: rgb(173, 202, 10);
+}
+.empty-template-categories:active {
+  background-color: rgb(139, 161, 11);
+}
+
+.btn-edit-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.btn-edit-categories:hover > .svg path {
+  fill: red;
 }
 
 /* templates */
@@ -244,6 +367,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
   background-color: rgb(18, 156, 241);
 }
 
@@ -286,7 +410,7 @@ button {
   text-align: center;
   flex-direction: row;
   border: 1px solid grey;
-  width: 50%;
+  width: 49%;
   height: 50px;
   cursor: pointer;
   background-color: rgb(58, 215, 74);
@@ -303,4 +427,23 @@ button {
   position: absolute;
   top: 90%;
   left: 30%;
+}
+#textAreaMainMenu:focus {
+  outline: none;
+  animation: glowing 4000ms infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgb(56, 55, 55);
+  }
+  40% {
+    box-shadow: 0 0 20px rgb(56, 55, 55);
+  }
+  60% {
+    box-shadow: 0 0 20px rgb(56, 55, 55);
+  }
+  100% {
+    box-shadow: 0 0 5px rgb(56, 55, 55);
+  }
 }

@@ -23,7 +23,7 @@ const templatesContainer = document.querySelector('.templates-container');
 
 newLanguageBtn.addEventListener('click', () => {
   // create and append a button
-  const button = document.createElement('button');
+  const button = document.createElement('div');
   button.innerText = 'new btn';
   button.id = Date.now().toString();
   button.classList.add('btn-language');
@@ -51,7 +51,7 @@ function renderLanguages() {
   let languagesLoaded = JSON.parse(localStorage.getItem('languagesJSON')) || [];
   console.log(languagesLoaded);
   languagesLoaded.forEach((item) => {
-    const button = document.createElement('button');
+    const button = document.createElement('div');
     mainMenuContainer.appendChild(button);
     button.innerText = item.name;
     button.id = item.id;
@@ -75,7 +75,7 @@ newCategoryBtn.addEventListener('click', () => {
 });
 function addCategoryBtn(selectedLanguage, categoryBtnId) {
   // create and append a button
-  const button = document.createElement('button');
+  const button = document.createElement('div');
   button.innerText = 'new btn';
   button.id = categoryBtnId;
   button.classList.add('btn-category');
@@ -110,7 +110,7 @@ function showCategoriesForLanguage(languageId) {
   console.log(categoriesLoaded);
   categoriesLoaded.forEach((item) => {
     if (item.selectedLanguage === selectedLanguage) {
-      const button = document.createElement('button');
+      const button = document.createElement('div');
       categoriesContainer.appendChild(button);
       button.innerText = 'new btn';
       button.id = item.id;
@@ -152,9 +152,9 @@ function showTemplatesForCategory(categoryBtnIdGlobal) {
 //
 //
 //
-// modal
+// modal main
 const editModal = document.getElementById('editModal');
-//btn edit modal
+//btn edit modal main
 const btnEdit = document.querySelector('.btn-edit');
 btnEdit.addEventListener('click', (e) => {
   editModal.classList.remove('closed');
@@ -182,6 +182,25 @@ function saveTemplate() {
     editModal.style.display = 'none';
   }, 700);
 }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 
@@ -235,6 +254,101 @@ const LicaTextArea = document.getElementById('textarea');
 //
 //
 //
+//
+//
+//
+//
+////edit modal-categories
+//btn edit categories
+const editModalCategories = document.getElementById('editModal-categories');
+//btn edit modal categories
+const btnEditCategories = document.querySelector('.btn-edit-categories');
+btnEditCategories.addEventListener('click', (e) => {
+  editModalCategories.classList.remove('closed');
+  editModalCategories.style.display = 'block';
+  editModalCategories.classList.add('active');
+  e.stopPropagation();
+});
+//
+//edit modal-categories save button
+const btnEditSaveCategories = document.querySelector('.save-categories');
+btnEditSaveCategories.addEventListener('click', saveTemplateCategories);
+function saveTemplateCategories() {
+  let mainTemplate =
+    JSON.parse(localStorage.getItem('template-categories')) || {};
+  mainTemplate = textAreaCategoriesMenu.value;
+  localStorage.setItem('template-categories', JSON.stringify(mainTemplate));
+  let replacedText = mainTemplate.replace(/\*brand\*/g, brand);
+  editModalCategories.style.backgroundColor = 'rgba(0, 255, 0, 0.85)';
+  setTimeout(function () {
+    editModalCategories.style.backgroundColor = 'rgb(242, 175, 175, 0.85)';
+    editModalCategories.classList.add('closed');
+    console.log('SAVED!');
+    editModalCategories.classList.remove('active');
+  }, 500);
+  setTimeout(function () {
+    editModalCategories.style.display = 'none';
+  }, 700);
+}
+//
+////edit modal close button categories
+const btnEditCloseCategories = document.querySelector('.close-categories');
+btnEditCloseCategories.addEventListener('click', () => {
+  editModalCategories.classList.remove('active');
+  editModalCategories.classList.add('closed');
+  setTimeout(function () {
+    editModalCategories.style.display = 'none';
+  }, 300);
+});
+//
+//// text area of the categories menu modal
+const textAreaCategoriesMenu = document.getElementById(
+  'textAreaMainMenu-categories'
+);
+textAreaCategoriesMenu.value =
+  JSON.parse(localStorage.getItem('template-categories')) || {};
+//
+//
+
+const emptyTemplateCategoriesBtn = document.querySelector(
+  '.empty-template-categories'
+);
+emptyTemplateCategoriesBtn.addEventListener('click', (e) => {
+  insertTemplateCategories();
+});
+//
+function insertTemplateCategories() {
+  let parsedTemplate =
+    JSON.parse(localStorage.getItem('template-categories')) || {};
+  let replacedText = textAreaCategoriesMenu.value.replace(/\*brand\*/g, brand);
+  LicaTextArea.value = replacedText;
+  console.log('function CATEGORIES is working');
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //-------------------------------------------
 // templates
 //add new template
@@ -244,7 +358,7 @@ newTemplateBtn.addEventListener('click', () => {
 });
 function addTemplateBtn(categoryBtnIdGlobal, selectedTemplateId) {
   // create and append a button
-  const button = document.createElement('button');
+  const button = document.createElement('div');
   button.innerText = 'new template';
   button.id = selectedTemplateId;
   button.classList.add('btn-template');
@@ -276,7 +390,7 @@ function renderTemplates(selectedCategory) {
   let templatesLoaded = JSON.parse(localStorage.getItem('templatesJSON')) || [];
   templatesLoaded.forEach((item) => {
     if (item.selectedCategory === selectedCategory) {
-      const button = document.createElement('button');
+      const button = document.createElement('div');
       templatesContainer.appendChild(button);
       button.innerText = 'new template';
       button.id = item.id;
