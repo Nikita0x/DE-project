@@ -1,32 +1,3 @@
-// ==UserScript==
-// @name         DE new
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://app.licacrm.co/callcenter/
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=licacrm.co
-// @grant        none
-// @run-at       document-idle
-// ==/UserScript==
-
-(function () {
-  'use strict';
-// Declare a global variable
-let parent;
-let container;
-let wrapper;
-setTimeout(function () {
-const style = document.createElement('style')
-style.type = 'text/css';
-// Append the stylesheet to the head of the document
-document.head.appendChild(style);
-//style rules
-style.innerHTML = `
-.hide {
-  display:none !important;
-}
-`
 let parent;
 let container;
 let wrapper;
@@ -40,7 +11,7 @@ container = document.createElement('div');
 container.classList.add('container');
 container.style.position = 'relative';
 container.style.left = '-17%';
-container.style.height = '720px';
+container.style.height = '650px';
 container.style.width = '323px';
 container.style.borderRadius = '10px';
 container.style.border = '1px solid black';
@@ -77,7 +48,7 @@ container__header__buttons.appendChild(container__header__buttonsSpam);
 
 //   container header styles
 container__header.style.position = 'absolute';
-container__header.style.height = '158px';
+container__header.style.height = '105px';
 container__header.style.width = '100%';
 container__header.style.top = '0';
 container__header.style.left = '0';
@@ -113,17 +84,6 @@ container__header__buttonsSpam.style.justifyContent = 'center';
 container__header__buttonsSpam.style.alignItems = 'center';
 container__header__buttonsSpam.style.cursor = 'pointer';
 
-//input
-const container__header__input = document.createElement('input')
-container__header__input.classList.add('container__header__input')
-container__header__input.style.position = 'absolute';
-container__header__input.style.top = '58%';
-container__header__input.style.left = '12%';
-container__header__input.style.fontSize = '20px';
-container__header__input.placeholder = 'Search'
-container__header__input.style.padding = '10px';
-container__header.appendChild(container__header__input)
-
 //   container__body
 const container__body = document.createElement('div');
 container__body.classList.add('container__body');
@@ -135,7 +95,7 @@ container__body.style.gridTemplateColumns = '1fr 1fr';
 container__body.style.gridTemplateRows = 'repeat(auto-fill, 60px)';
 container__body.style.gap = '3px';
 container__body.style.position = 'absolute';
-container__body.style.top = '22%';
+container__body.style.top = '16%';
 container__body.style.left = '0';
 container__body.style.height = '500px';
 container__body.style.overflowY = 'scroll';
@@ -873,7 +833,7 @@ function addingNewButton() {
   modal__content__bodyTextTextarea.rows = '25';
   modal__content__bodyTextTextarea.placeholder = `
   Пример:
-
+  
     Hi #user_name#!
     <br>
     Thank you for contacting our *brand* Support Team!
@@ -1339,30 +1299,3 @@ function renderButtons() {
   });
 }
 renderButtons();
-
-    // search logic
-
-container__header__input.addEventListener('keyup', (e) => {
-  let val = container__header__input.value.trim().toLowerCase();
-  const buttonsList = document.querySelectorAll('.button');
-  if (val != '') {
-    buttonsList.forEach((button) => {
-      let title = button.title.toLowerCase();
-      if (title.search(val) == -1) {
-        button.classList.add('hide');
-      } else {
-        button.classList.remove('hide');
-        console.log(button);
-      }
-    });
-  } else {
-    buttonsList.forEach((button) => {
-      button.classList.remove('hide');
-    });
-  }
-});
-
-}, 2000);
-
-
-})();
